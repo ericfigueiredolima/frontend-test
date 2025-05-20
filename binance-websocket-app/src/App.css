@@ -1,0 +1,244 @@
+/* src/App.css */
+
+/* Reset básico (opcional, mas bom para consistência) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Ou 'Roboto', 'Inter' para um look mais moderno */
+    background-color: #f0f2f5; /* Fundo cinza claro */
+    margin: 0;
+    padding: 0; /* O padding virá do .app-container */
+}
+
+/* Container principal para centralizar e adicionar padding */
+.app-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    min-height: 100vh; /* Garante que o container ocupe a altura total da viewport */
+}
+
+/* Título principal */
+.main-title {
+    font-size: 2.8em; /* Ajustado para ser mais proeminente */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px; /* Mais espaço abaixo do título */
+    text-align: center;
+}
+
+/* Contêiner principal do layout de duas colunas */
+.main-layout-container {
+    display: flex;
+    gap: 20px; /* Espaço entre as colunas */
+    max-width: 1400px; /* Largura máxima para o conteúdo (ajuste conforme necessário) */
+    width: 100%;
+    align-items: flex-start; /* Alinha os cards no topo */
+}
+
+/* Estilo base para os "cards" (sidebar e conteúdo principal) */
+.sidebar-card,
+.main-content-card {
+    background-color: #ffffff;
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave e um pouco mais pronunciada */
+    padding: 20px;
+    display: flex; /* Para organizar o conteúdo interno */
+    flex-direction: column;
+}
+
+/* Coluna lateral de símbolos */
+.sidebar-card {
+    flex: 0 0 300px; /* Largura fixa para a sidebar, não cresce nem encolhe */
+    min-height: 500px; /* Altura mínima para não ficar "curto" */
+}
+
+/* Cabeçalho de cada seção dentro dos cards */
+.header-section {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee; /* Linha sutil abaixo do cabeçalho */
+}
+
+.section-title {
+    font-size: 1.6em; /* Um pouco maior para os títulos das seções */
+    font-weight: 600;
+    color: #333;
+    margin: 0; /* Remove margem padrão do h2 */
+}
+
+/* Estilos para o campo de busca dentro de SymbolSelector (se estiver lá) */
+/* Você precisa adicionar essas classes no seu SymbolSelector.tsx */
+.search-input-container {
+  display: flex; /* Transforma em um container flex */
+  align-items: center; /* Centraliza verticalmente o input e o ícone */
+  position: relative; /* Mantém para posicionar o ícone se precisar no futuro */
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0; /* Adiciona a borda NO CONTAINER FLEX */
+  border-radius: 5px;
+  overflow: hidden; /* Garante que o conteúdo não vaze da borda arredondada */
+}
+
+.search-input-container input {
+  flex-grow: 1; /* Permite que o input ocupe o espaço restante */
+  padding: 10px 12px; /* Mantém o padding interno */
+  border: none; /* REMOVE A BORDA DO INPUT, pois o container já tem */
+  outline: none; /* Remove a borda de foco padrão */
+  font-size: 1em;
+  /* Remove o padding-right: 36px; e o width: calc(100% - 24px); */
+  /* O flex-grow e o padding do ícone já farão o trabalho */
+}
+
+.search-input-container .search-icon {
+  color: #888;
+  cursor: pointer;
+  padding: 0 12px; /* Adiciona padding lateral para separar do input */
+  font-size: 1.1em; /* Ajuste se quiser o ícone maior/menor */
+  display: flex; /* Para centralizar o próprio ícone se ele tiver mais conteúdo */
+  align-items: center;
+  height: 100%; /* Garante que o ícone ocupe a altura total do container flex */
+}
+
+/* Estilos para a lista de checkboxes dentro de SymbolSelector (se estiver lá) */
+/* Você precisa adicionar essas classes no seu SymbolSelector.tsx */
+.symbol-list {
+  flex-grow: 1; /* Permite que a lista de símbolos ocupe o espaço restante */
+  overflow-y: auto; /* Adiciona scroll se a lista for muito longa */
+  margin-bottom: 20px;
+}
+
+.symbol-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0; /* Linha divisória sutil */
+}
+
+.symbol-item:last-child {
+  border-bottom: none;
+}
+
+.symbol-item input[type="checkbox"] {
+  margin-right: 10px;
+  /* Estilo básico para o checkbox, pode ser customizado */
+  appearance: none; /* Remove estilo padrão do navegador */
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.symbol-item input[type="checkbox"]:checked {
+  background-color: #20b2aa; /* Fundo verde-água quando selecionado */
+  border-color: #20b2aa;
+}
+
+.symbol-item input[type="checkbox"]:checked::before {
+  content: '✔'; /* Ícone de check */
+  font-size: 14px;
+  color: white;
+}
+
+/* Estilos para o botão "Add to List" (se estiver em App.tsx ou SymbolSelector.tsx) */
+.add-to-list-button {
+  background-color: #20b2aa; /* Verde-água/Turquesa como no exemplo */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  margin-top: auto; /* Empurra o botão para o final do card */
+}
+
+.add-to-list-button:hover {
+  background-color: #1a8e86;
+}
+
+/* Coluna principal da tabela */
+.main-content-card {
+  flex-grow: 1; /* Ocupa o espaço restante */
+}
+
+/* Estilos para a tabela dentro de PriceList */
+/* Você precisa adicionar essas classes no seu PriceList.tsx */
+.price-table {
+  width: 100%;
+  border-collapse: separate; /* Permite border-spacing */
+  border-spacing: 0 8px; /* Espaço entre as linhas da tabela */
+}
+
+.price-table thead th {
+  background-color: #f8f8f8; /* Fundo claro para o cabeçalho */
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #666;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.price-table tbody td {
+  background-color: #ffffff; /* Fundo branco para as células do corpo */
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0; /* Borda inferior sutil */
+}
+
+/* Arredondamento para as bordas das linhas (precisa de :first-child e :last-child) */
+.price-table tbody tr {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra suave para cada linha */
+    border-radius: 8px; /* Arredonda as bordas da linha */
+    overflow: hidden; /* Garante que a sombra e borda funcionem bem com o conteúdo */
+}
+
+.price-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Estilos para as mudanças de preço (verde/vermelho) */
+.price-change {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 15px; /* Cantos bem arredondados para o "pill" */
+  display: inline-block; /* Para o padding e border-radius funcionarem */
+}
+
+.price-change.positive {
+  background-color: #e6ffe6; /* Verde claro */
+  color: #008000; /* Verde escuro */
+}
+
+.price-change.negative {
+  background-color: #ffe6e6; /* Vermelho claro */
+  color: #cc0000; /* Vermelho escuro */
+}
+
+/* Media Queries para responsividade básica */
+@media (max-width: 768px) {
+  .main-layout-container {
+    flex-direction: column; /* Empilha as colunas em telas menores */
+    align-items: center;
+  }
+
+  .sidebar-card,
+  .main-content-card {
+    width: 100%; /* Ocupa a largura total */
+    max-width: 500px; /* Limita a largura em telas menores para não ficar muito esticado */
+  }
+
+  .main-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+  }
+}
